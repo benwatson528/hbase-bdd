@@ -3,7 +3,7 @@ package uk.co.hadoopathome.hbasebdd;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.HBaseTestingUtility;
-import org.apache.hadoop.hbase.client.Connection;
+import org.apache.hadoop.hbase.TableName;
 import org.junit.rules.ExternalResource;
 
 public class HBaseTestServer extends ExternalResource {
@@ -23,6 +23,7 @@ public class HBaseTestServer extends ExternalResource {
         conf.set("test.hbase.zookeeper.property.clientPort", ZOOKEEPER_PORT);
         HBASE_UTILITY = new HBaseTestingUtility(conf);
         HBASE_UTILITY.startMiniCluster();
+        HBASE_UTILITY.createTable(TableName.valueOf("testTable"), "c");
     }
 
     @Override

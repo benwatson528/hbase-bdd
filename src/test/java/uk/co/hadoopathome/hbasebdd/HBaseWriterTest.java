@@ -8,19 +8,19 @@ import org.apache.hadoop.hbase.ipc.AsyncRpcClient;
 import org.apache.hadoop.hbase.ipc.RpcClientFactory;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.ClassRule;
+import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 public class HBaseWriterTest {
-    private static final HBaseTestingUtility util = new HBaseTestingUtility();
 
-    @Before
-    public void setUp() throws Exception {
+    @ClassRule
+    public static HBaseTestServer HBASE_TEST_SERVER = new HBaseTestServer();
 
-    }
-
-    @After
-    public void tearDown() throws Exception {
+    @Test
+    public void testCreateTable() {
+        
     }
 
 }
