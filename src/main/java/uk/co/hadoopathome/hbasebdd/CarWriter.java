@@ -19,15 +19,15 @@ public class CarWriter {
 
     private final Connection connection;
 
-    CarWriter(Connection connection) {
+    public CarWriter(Connection connection) {
         this.connection = connection;
     }
 
-    public void addNewCar(String registration, String model, int productionYear) throws IOException {
+    public void addNewCar(Car car) throws IOException {
         Table table = this.connection.getTable(TABLE_NAME);
-        Put p = new Put(Bytes.toBytes(registration));
-        p.addColumn(COLUMN_FAMILY, MODEL_COLUMN_QUALIFIER, Bytes.toBytes(model));
-        p.addColumn(COLUMN_FAMILY, PRODUCTION_YEAR_COLUMN_QUALIFIER, Bytes.toBytes(productionYear));
+        Put p = new Put(Bytes.toBytes(car.getRegistration()));
+        p.addColumn(COLUMN_FAMILY, MODEL_COLUMN_QUALIFIER, Bytes.toBytes(car.getModel()));
+        p.addColumn(COLUMN_FAMILY, PRODUCTION_YEAR_COLUMN_QUALIFIER, Bytes.toBytes(car.getProductionYear()));
         table.put(p);
     }
 }
