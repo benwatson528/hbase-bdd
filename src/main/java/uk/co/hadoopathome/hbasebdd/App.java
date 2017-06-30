@@ -26,11 +26,11 @@ public class App {
         } catch (IOException e) {
             throw new RuntimeException("Unable to create connection to HBase, exiting");
         }
-        HBaseWriter hbaseWriter = new HBaseWriter(connection);
+        CarWriter carWriter = new CarWriter(connection);
         try {
-            hbaseWriter.writeToHbase("testTable", "rowKey", "{\"name\":\"John Smith\", \"grade\":\"C+\"}");
+            carWriter.addNewCar(args[0], args[1], Integer.parseInt(args[2]));
         } catch (IOException e) {
-            LOGGER.error("Unable to write to HBase", e);
+            LOGGER.error("Unable to store car in HBase", e);
         }
     }
 }
