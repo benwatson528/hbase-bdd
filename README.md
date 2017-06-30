@@ -1,4 +1,4 @@
 # hbase-bdd
 An example of using BDDs to integration test HBase
 
-Blog post to follow when finished...
+The accompanying blog post can be found at http://www.hadoopathome.co.uk/Testing-Hbase-Applications-with-BDD-Integration-Tests/
