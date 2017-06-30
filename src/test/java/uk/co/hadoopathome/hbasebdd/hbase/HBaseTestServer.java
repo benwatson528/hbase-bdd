@@ -8,18 +8,18 @@ import org.junit.rules.ExternalResource;
 import java.io.IOException;
 
 public class HBaseTestServer extends ExternalResource {
-    private static HBaseTestingUtility HBASE_UTILITY;
+    private HBaseTestingUtility hbaseUtility;
 
     @Override
     protected void before() throws Exception {
-        HBASE_UTILITY = new HBaseTestingUtility();
-        HBASE_UTILITY.startMiniCluster();
-        HBASE_UTILITY.createTable(TableName.valueOf("cars"), "c");
+        this.hbaseUtility = new HBaseTestingUtility();
+        this.hbaseUtility.startMiniCluster();
+        this.hbaseUtility.createTable(TableName.valueOf("cars"), "c");
     }
 
     public Connection getConnection() {
         try {
-            return HBASE_UTILITY.getConnection();
+            return this.hbaseUtility.getConnection();
         } catch (IOException e) {
             throw new RuntimeException("Unable to get HBase connection, has the test been initialised correctly?", e);
         }
@@ -27,11 +27,11 @@ public class HBaseTestServer extends ExternalResource {
 
     @Override
     protected void after() {
-        if (HBASE_UTILITY != null) {
+        if (this.hbaseUtility != null) {
             try {
-                HBASE_UTILITY.shutdownMiniCluster();
+                this.hbaseUtility.shutdownMiniCluster();
             } catch (Exception e) {
-                e.printStackTrace();
+                throw new RuntimeException("Unable to close HBase connection", e);
             }
         }
     }

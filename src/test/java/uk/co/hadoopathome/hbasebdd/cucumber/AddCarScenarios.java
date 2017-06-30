@@ -35,7 +35,6 @@ public class AddCarScenarios extends TestRunner {
     public void theCarIsAdded() throws IOException {
         CarWriter carWriter = new CarWriter(this.connection);
         carWriter.addNewCar(this.inputCar);
-
     }
 
     @Then("^the car is available in HBase$")
