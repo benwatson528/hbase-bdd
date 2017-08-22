@@ -14,7 +14,7 @@ import java.io.IOException;
  * Stores cars into the HBase database.
  */
 public class CarWriter {
-    Logger LOGGER = LoggerFactory.getLogger(CarWriter.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CarWriter.class);
     private static final TableName TABLE_NAME = TableName.valueOf("cars");
     private static final byte[] COLUMN_FAMILY = Bytes.toBytes("c");
     private static final byte[] MODEL_COLUMN_QUALIFIER = Bytes.toBytes("model");
